@@ -16,16 +16,21 @@ public class Main {
             Connection conn = DriverManager.getConnection(connectionString,username,password);
             System.out.println("Connected Database!");
             Statement stt = conn.createStatement();
-            String sql = "select * from students";
-            ResultSet rs = stt.executeQuery(sql);
-            while (rs.next()){
-                String name = rs.getString("name");
-                String telephone = rs.getString("telephone");
-                Integer age = rs.getInt("age");
-                System.out.println(name);
-                System.out.println(telephone);
-                System.out.println(age);
-            }
+            // GET DATA
+//            String sql = "select * from students";
+//            ResultSet rs = stt.executeQuery(sql);
+//            while (rs.next()){
+//                String name = rs.getString("name");
+//                String telephone = rs.getString("telephone");
+//                Integer age = rs.getInt("age");
+//                System.out.println(name);
+//                System.out.println(telephone);
+//                System.out.println(age);
+//            }
+
+            // INSERT DATA
+            String insert_sql = "insert into students(name,age,telephone) values('Nguyễn Huy Long',19,'0988888888')";
+            stt.executeUpdate(insert_sql);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
