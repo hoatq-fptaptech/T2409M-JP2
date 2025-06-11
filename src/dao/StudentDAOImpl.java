@@ -3,6 +3,7 @@ package dao;
 import database.Connector;
 import entity.Student;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -33,12 +34,37 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Student findById(Integer id) {
+        try {
+            Connector connector = Connector.getInstance();
+            Statement statement = connector.createStatement();
+            String sql = "select * from "+table+" where id="+id;
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()){
+                return new Student(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("telephone")
+                        );
+            }
+        }catch (Exception e){
+        }
         return null;
     }
 
     @Override
     public Boolean create(Student s) {
-        return null;
+        try {
+            Connector connector = Connector.getInstance();
+            String sql = "insert into students(name,age,telephone) values(?,?,?)";
+            PreparedStatement pstm = connector.preparedStatement(sql);
+            pstm.setString(1,s.getName());
+            pstm.setInt(2,s.getAge());
+            pstm.setString(3,s.getTelephone());
+            return pstm.executeUpdate() > 0;
+        }catch (Exception e){
+
+        }
+        return false;
     }
 
     @Override

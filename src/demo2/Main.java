@@ -1,5 +1,6 @@
 package demo2;
 
+import dao.StudentDAOImpl;
 import database.Connector;
 import entity.Student;
 
@@ -10,24 +11,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         try{
-            // ket noi db
-            Connector connector = Connector.getInstance();
-            Statement stt = connector.createStatement();
-//             GET DATA
-            String sql = "select * from students";
-            ResultSet rs = stt.executeQuery(sql);
-
-            ArrayList<Student> listStudent = new ArrayList<>();
-
-            while (rs.next()){
-                Integer id = rs.getInt("id");
-                String name = rs.getString("name");
-                String telephone = rs.getString("telephone");
-                Integer age = rs.getInt("age");
-                Student s = new Student(id,name,age,telephone);
-                listStudent.add(s);
-            }
-
+            StudentDAOImpl sd = new StudentDAOImpl();
+            ArrayList<Student> listStudent = sd.all();
             for (Student s : listStudent){
                 s.showInfo();
             }

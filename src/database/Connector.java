@@ -1,9 +1,6 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Connector {
     private String connectionString = "jdbc:mysql://localhost:3306/t2409m_jp";
@@ -29,5 +26,9 @@ public class Connector {
 
     public Statement createStatement() throws SQLException {
         return conn.createStatement();
+    }
+
+    public PreparedStatement preparedStatement(String sql) throws SQLException{
+        return conn.prepareStatement(sql);
     }
 }
