@@ -1,5 +1,7 @@
 package demo2;
 
+import database.Connector;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,13 +18,8 @@ public class ShowStudent {
             int id = scanner.nextInt();
 
             // ket noi db
-            String connectionString = "jdbc:mysql://localhost:3306/t2409m_jp";
-            String username = "root";
-            String password = "root"; // dùng xampp: ""
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(connectionString,username,password);
-            System.out.println("Connected Database!");
-            Statement stt = conn.createStatement();
+            Connector connector = new Connector();
+            Statement stt = connector.createStatement();
 //             GET DATA
             String query = "SELECT * FROM students WHERE id = " + id;
             ResultSet rs = stt.executeQuery(query);
