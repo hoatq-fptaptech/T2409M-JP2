@@ -1,0 +1,53 @@
+package dao;
+
+import database.Connector;
+import entity.Student;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class StudentDAOImpl implements StudentDAO {
+    private String table = "students";
+    @Override
+    public ArrayList<Student> all() {
+        ArrayList<Student> list = new ArrayList<>();
+        try {
+            Connector connector = Connector.getInstance();
+            Statement statement = connector.createStatement();
+            String sql = "select * from "+table;
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()){
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                String telephone = rs.getString("telephone");
+                Integer age = rs.getInt("age");
+                Student s = new Student(id,name,age,telephone);
+                list.add(s);
+            }
+        }catch (Exception e){
+        }
+        return list;
+    }
+
+    @Override
+    public Student findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Boolean create(Student s) {
+        return null;
+    }
+
+    @Override
+    public Boolean update(Student s) {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Integer id) {
+        return null;
+    }
+}
