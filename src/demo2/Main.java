@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args){
         try{
             // ket noi db
-            Connector connector = new Connector();
+            Connector connector = Connector.getInstance();
             Statement stt = connector.createStatement();
 //             GET DATA
             String sql = "select * from students";

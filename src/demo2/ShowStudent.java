@@ -18,7 +18,7 @@ public class ShowStudent {
             int id = scanner.nextInt();
 
             // ket noi db
-            Connector connector = new Connector();
+            Connector connector = Connector.getInstance();
             Statement stt = connector.createStatement();
 //             GET DATA
             String query = "SELECT * FROM students WHERE id = " + id;
