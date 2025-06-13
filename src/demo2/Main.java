@@ -3,6 +3,7 @@ package demo2;
 import dao.StudentDAOImpl;
 import database.Connector;
 import entity.Student;
+import entity.Subject;
 import factory.DaoFactory;
 
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ public class Main {
             for (Student s : listStudent){
                 s.showInfo();
             }
+            ArrayList<Subject> listSubjects = DaoFactory.getDAO("subject").all();
 
             // INSERT DATA
 //            String insert_sql = "insert into students(name,age,telephone) values('Nguyễn Huy Long',19,'0988888888')";
