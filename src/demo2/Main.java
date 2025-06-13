@@ -3,6 +3,7 @@ package demo2;
 import dao.StudentDAOImpl;
 import database.Connector;
 import entity.Student;
+import factory.DaoFactory;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,8 +12,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         try{
-            StudentDAOImpl sd = new StudentDAOImpl();
-            ArrayList<Student> listStudent = sd.all();
+            ArrayList<Student> listStudent = DaoFactory.getDAO("student").all();
             for (Student s : listStudent){
                 s.showInfo();
             }
