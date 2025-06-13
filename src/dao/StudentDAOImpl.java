@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImpl implements RepositoryDAO<Student,Integer> {
     private String table = "students";
     @Override
     public ArrayList<Student> all() {
